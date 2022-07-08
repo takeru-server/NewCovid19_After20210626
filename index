@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+	
+	<!-- デザイン参考(plotly.jsのところ)：https://paiza.hatenablog.com/entry/2016/06/07/JavaScript%E3%81%A7%E3%82%B0%E3%83%A9%E3%83%95%E6%8F%8F%E7%94%BB%E5%85%A5%E9%96%80%EF%BC%81%E5%85%A8%EF%BC%98%E5%80%8B%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%82%92%E3%82%B3%E3%83%BC -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>感染者数_もっと便利にしたい</title>
+		<!-- コンボボックス用のCSS(ロゴを表示したりする)コンボボックスで表示データを自在に操れるようになったら、動くアイコン用のCSSに切り替える予定 -->
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+		<!-- CSSを調整 -->
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<!-- ライブラリ読み込み -->
+		<!-- Ver.3.6.0で不具合があればVer.2.1.3に戻す <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>	<!-- CSVの読み取りに使用するライブラリ -->
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	</head>
+	
+	<body id="js-main-visual">
+		<!-- コンボボックスここから		参考：https://codepen.io/husamui/pen/udtei -->
+		<div class="dropholder">
+			<p>Select</p>
+			<div class="dropdown">
+				<p><i class="fa fa-foursquare"></i> 東京都</p>
+			</div>
+			<ul class="menu">
+				<!-- アイコン(「fab」→「fa」に変更すれば使えた)	参考：https://fontawesome.com/icons?from=io -->
+				<li><i class="fa fa-foursquare"></i> 東京都</li>
+				<li><i class="fa fa-apple"></i></i> 茨城県</li>
+				<li><i class="fa fa-twitter"></i> 栃木県</li>
+				<li><i class="fa fa-bolt"></i> 群馬県</li>
+				<li><i class="fa fa-star"></i> 埼玉県</li>
+				<li><i class="fa fa-heart"></i> 千葉県</li>
+				<li><i class="fa fa-star"></i> 神奈川県</li>
+				<li><i class="fa fa-heart"></i> 山梨県</li>
+			</ul>
+		</div>
+		<!-- コンボボックスここまで -->
+		
+		<!-- <div id="stage" style="width:100%;height:50%;"></div> -->
+		<div id="stage"></div>
+		
+		<!-- 自作コードの読み込み -->
+		<script src="js/main.js"></script>
+	</body>
+</html>
