@@ -1,0 +1,206 @@
+body{
+	margin:0 auto;
+	background:radial-gradient(#6f2d9c, #391353);
+	background-size:4px 4px;
+	perspective: 400px;
+	width: 100%;
+	/* height: 600px; */
+	/* height: 100vh; */
+	height: 500px;
+}
+
+/* グラフを格納している箱 */
+#stage{
+	/* 画面の中央に表示する */
+    /* padding-bottom: 150px; */
+    left: 0%;
+    width: 100%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+}
+
+/* レスポンシブ参考：https://techacademy.jp/magazine/9369 */
+@media screen and (max-height:895px){
+	/* 895px以下で適用する内容(iPhone Plus系, X,XS,11Pro) */
+	#stage{
+		/* 画面の中央に表示する */
+		padding-top:240px;
+		height: 380px;
+	}
+	
+	/* コンボボックス */
+	.dropholder{
+		top: -45px;
+	}
+}
+
+@media screen and (min-height:896px){
+	/* 896px以上で適用する内容(iPhone XR,11用)(横は414px) */
+	#stage{
+		/* 画面の中央に表示する */
+		padding-bottom: 120px;
+	}
+	
+	/* コンボボックス */
+	.dropholder{
+		top: -40px;
+	}
+}
+
+@media screen and (min-height:900px){
+	/* 900px以上で適用する内容(PC用) */
+	#stage{
+		/* 画面の中央に表示する */
+		padding-top: 150px;
+	}
+}
+/* 白い余白の部分を作れるかテスト	結果：作れた */
+/*
+.main-svg{
+	height: 450px;
+}
+*/
+.dropholder{
+	width: 322px;
+	height: 60px;
+	margin:100px auto;
+	padding:0 0 0 20px;
+	border-radius:10px;
+	font:18px arial;
+	color: #fff;
+	position: relative;
+	box-sizing:border-box;
+	border:1px solid #9b0db9;
+	animation: move 3s ease-in-out infinite;
+	/* コンボボックスのメニューは最前面に表示する */
+	z-index:999;
+}
+.dropholder:hover, .dropholder:hover:after{
+	animation-play-state:paused;
+}
+/* コンボボックスの下の影の部分 */
+.dropholder:after{
+	content:"";	/* あえて空っぽにしている */
+	position: absolute;
+	width: 250px;
+	height: 5px;
+	background:rgba(0,0,0, 0);
+	display: block;
+	top:100px;
+	left:37px;
+	margin: auto;
+	border-radius:50%;
+	box-shadow:0 15px 10px rgba(0,0,0, 0.4);
+	animation: moveShadow 3s ease-in-out infinite;
+}
+p{
+	float: left;
+	line-height:30px;
+}
+.dropdown > p{
+	font-size:16px;
+}
+.dropdown, .dropholder{
+	background:linear-gradient(#da4df8 ,#9b0db9);
+}
+.dropdown{
+	margin-left:20px;
+	float: left;
+	width: 208px;
+	padding:0 0 0 20px;
+	border-radius:0 10px 10px 0;
+	cursor: pointer;
+	height:58px;
+	border-left:1px solid #da4df8;
+	position: relative;
+}
+.dropdown:hover{
+	background:linear-gradient(#da4df8 ,#b11cd0);
+}
+.dropdown:after{
+	/* 
+	■特殊文字のやり方 
+	・右のURLから、好きな記号の特殊コードをコピーする(2段あるうちの下の方)	http://guppy.eng.kagawa-u.ac.jp/~kagawa/OpenCampus/unicode.html
+	・右のURLより、コピーしたコードに対して、以下のことをする
+		1.「&」→ 円マーク
+		2.「#」→「0」（←数字のゼロ）
+		3. 数字は「10進数」→「16進数」/ 参考→10進数←→16進数変換プログラム	http://www.gs.niigata-u.ac.jp/~kimlab/hobby/conv-dechex.html
+		4. 最後のセミコロン「;」は省略。
+	*/
+	content:"\025bc"; /* 三角マークの特殊文字 */
+	font-size: 18px;
+	position: absolute;
+	right:20px;
+	top:18px;
+	display: block;
+}
+
+.menu{
+	position: absolute;
+	right:0;
+	top:70px;
+	width: 228px;
+	cursor: pointer;
+	opacity:0;
+	transform-style: preserve-3d;
+	transform:rotatey(180deg) rotateX(5deg) translatey(100px);
+	backface-visibility: hidden;
+	background:linear-gradient(#4dc2f8 ,#0d82b9);
+	border:2px solid #0d82b9;
+	border-radius:10px;
+	transition:all 0.8s;
+	z-index:5;
+	overflow:hidden;
+	/* 
+	li要素の中黒を非表示にしても、
+	左側のパディングは掛かったままとなるため、 
+	必要に応じてpadding-left: 0;を指定する
+	参考：https://marycore.jp/prog/css/ul-li-hide-show-disc/
+	*/
+	padding-left: 0;
+}
+.menu li{
+	padding: 10px 10px;
+	border-bottom:1px dotted #fff;
+	color:#e8f8ff; 
+	transition:all 0.3s;
+	/* 点を消す */
+	list-style: none;
+}
+.menu li:hover{
+	background:#61ccfd;
+	padding-left:20px;
+}
+.menu li:last-child{
+	border:none;
+}
+
+.showMenu{
+	 opacity:1;
+	transform:rotateX(0deg) translatey(0px);
+}
+li > i{
+	float: left;
+	padding-top: 3px;
+	padding-right: 8px;
+}
+
+p > i{
+ position: relative;
+ top:2px;
+}
+
+i{
+	opacity: 0.7;
+}
+
+@keyframes move{
+	0%, 100%{transform:translateY(-10px);}
+	50%{transform:translateY(0);}
+}
+
+@keyframes moveShadow{
+	0%,100%{transform:translateY(10px);opacity:0.4;}
+	50%{transform:translateY(0);opacity:1;}
+}
